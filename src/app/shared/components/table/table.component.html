@@ -1,0 +1,68 @@
+<ng-container *ngIf="config && rowData && rowData.length>0">
+    <div class="card card-primary card-outline" style="margin-bottom: 1rem;">
+        <div *ngIf="config.title" class="card-header">
+            <i class="fa fa-align-justify"></i> {{ config.title }}
+        </div>
+        <div class="card-body overflow-auto">
+            <table class="table table-bordered" [ngStyle]="{'min-width': widthTable }">
+                <thead *ngIf="showCab">
+                    <tr *ngIf="cab3">
+                        <ng-container *ngFor="let col of cab3; let i =index;">
+                            <th [ngStyle]="{'text-align': 'center', 'background-color': cab3Style?.backgroundColor, 'color': cab3Style?.color}" [attr.colspan]="getColSpan(col)">{{col.label}}</th>
+                        </ng-container>
+                    </tr>
+                    <tr *ngIf="cab2">
+                        <ng-container *ngFor="let col of cab2; let i =index;">
+                            <th [attr.colspan]="getColSpan(col)">                                
+                                <div *ngIf="col.label=='AVANCE POR ESCENARIOS'" style="margin: 1px 0;" [ngStyle]="{'margin-left': '20%','text-align': 'center', 'color': cab2Style?.color, 'border-left-color': cab2Style?.backgroundColor}">
+                                    {{col.label}}
+                                </div>
+                                <div *ngIf="col.label!='AVANCE POR ESCENARIOS'" style="margin: 1px 0;" [ngStyle]="{'text-align': 'center', 'color': cab2Style?.color, 'border-left-color': cab2Style?.backgroundColor}">
+                                    {{col.label}}
+                                </div>
+                            </th>
+                        </ng-container>
+                    </tr>
+                    <tr *ngIf="cab1">
+                        <ng-container *ngFor="let col of cab1; let i =index;">
+                            <th [ngStyle]="{'text-align': 'center', 'width': getWidth(col), 'background-color': getCab1Style(col)?.backgroundColor, 'color': getCab1Style(col)?.color}">{{col.label}}</th>
+                        </ng-container>
+                    </tr>
+                </thead>
+
+                <ng-container *ngFor="let page of listClientPage; let i =index;">
+                    <tbody *ngIf="page.visible">
+                        <ng-container *ngFor="let row of page.list; let i =index;">
+                            <tr>
+                                <ng-container *ngFor="let col of cab1; let i =index;">
+                                    <td [ngStyle]="{'text-align': config.title!='CONSIDERACIONES'?'center':'left',
+                                     'font-size':'13.5px',
+                                      'background-color': getCellStyle(col,row)?.backgroundColor,
+                                      'color': getCellStyle(col,row)?.color}" >{{row[col.name]}}</td>
+                                </ng-container>
+                            </tr>
+                        </ng-container>
+                    </tbody>
+                </ng-container>
+
+            </table>
+                <nav *ngIf="listClientPage?.length > 1">
+                    <ul class="pagination  justify-content-end">
+                        <li class="page-item" [ngClass]="{'active': page.visible}" *ngFor="let page of listClientPage;">
+                            <button class="page-link" (click)="clickPage(page.pageNumber)">{{page.pageNumber}}</button>
+                        </li>
+                    </ul>
+                </nav>
+        </div>
+        <!-- <div class="card-body">
+            <nav *ngIf="listClientPage?.length > 1">
+                <ul class="pagination  justify-content-end">
+                    <li class="page-item" [ngClass]="{'active': page.visible}" *ngFor="let page of listClientPage;">
+                        <button class="page-link" (click)="clickPage(page.pageNumber)">{{page.pageNumber}}</button>
+                    </li>
+                </ul>
+            </nav>
+        </div> -->
+    </div>
+
+</ng-container>

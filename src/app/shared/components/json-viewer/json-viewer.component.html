@@ -1,0 +1,8 @@
+<div *ngIf="jsonData" class="card card-primary card-outline">
+    <div class="card-header">
+        <h5 class="m-0">Log de ticket</h5>
+    </div>
+    <div class="card-body">
+        <ngx-json-viewer [json]="jsonData" [expanded]="false"></ngx-json-viewer>
+    </div>
+</div>

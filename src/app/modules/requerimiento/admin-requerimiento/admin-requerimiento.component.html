@@ -1,0 +1,21 @@
+<div class="card card-primary card-outline">
+    <div class="card-header">
+        <h5 class="m-0">Administrar Cartilla</h5>
+    </div>
+    <div class="card-body">
+        <dynamic-form [config]="formConfig" #form="dynamicForm"></dynamic-form>
+    </div>
+    <div class="card-footer">
+        <app-bar-button #barButton [config]="buttonConfig"></app-bar-button>
+    </div>
+
+    {{form?.value | json}}
+
+</div> 
+<br>
+<app-table [config]="tableConfig" [filtro]="filtro3"  ></app-table>
+<br>
+<app-grid-simple #grid [config]="gridConfig"  [filtro]="filtro"></app-grid-simple>
+<app-grid-simple #grid2 [config]="gridConfig2"  [filtro]="filtro2"></app-grid-simple>
+
+

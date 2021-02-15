@@ -1,0 +1,16 @@
+<h3>Static</h3>
+    <ul>
+      <li *ngFor="let item of items" [contextMenu]="static">Right Click: {{item?.name}}</li>
+    </ul>
+    <context-menu #static (close)="showMessage('closed static', $event)" (open)="showMessage('open', $event)">
+      <ng-template contextMenuItem [visible]="true" [enabled]="false" (execute)="showMessage('Hi, someone')">
+        Say hi
+      </ng-template>
+      <ng-template contextMenuItem [visible]="false" (execute)="showMessage('Hi, someone')">
+        This will never show...
+      </ng-template>
+      <ng-template contextMenuItem [divider]="true"></ng-template>
+      <ng-template contextMenuItem [visible]="true" [enabled]="true" (execute)="showMessage('Someone said: something')">
+        Bye, someone
+      </ng-template>
+</context-menu>

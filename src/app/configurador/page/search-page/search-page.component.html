@@ -1,0 +1,11 @@
+<ng-container *ngIf="meta">
+    <div class="card card-primary card-outline">
+        <div class="card-body">
+            <dynamic-form [config]="formConfig" #form="dynamicForm"></dynamic-form>
+        </div>
+        <div class="card-footer">
+            <app-bar-button #barButton [config]="barButtonConfig"></app-bar-button>
+        </div>
+    </div> 
+    <app-grid #grid [config]="gridConfig" [filtro]="filtro"></app-grid>
+</ng-container>

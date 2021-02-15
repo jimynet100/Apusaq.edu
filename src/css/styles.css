@@ -1,0 +1,135 @@
+/* You can add global styles to this file, and also import other style files */
+
+.ng-select.ng-select-custom-invalid.ng-touched .ng-select-container {
+    border-left: 5px solid #a94442;
+    border-radius: 4px;
+    border-color: #a94442;
+}
+
+.ng-select.ng-select-custom-valid.ng-touched .ng-select-container {
+    border-left: 5px solid #28a745;
+    border-radius: 4px;
+    border-color: #28a745;
+}
+
+.ng-select.ng-select-forzado-invalid .ng-select-container {
+    border-left: 5px solid #a94442;
+    border-radius: 4px;
+    border-color: #a94442;
+}
+
+.ng-select.ng-select-custom.ng-dropdown-panel .ng-dropdown-panel-items .ng-option {
+    word-break: break-all;
+    -ms-word-break: break-all;
+    -webkit-hyphens: auto;
+    -moz-hyphens: auto;
+    -ms-hyphens: auto;
+    hyphens: auto;
+    overflow-wrap: break-word;
+    overflow: hidden;
+    white-space: normal !important;
+}
+
+.ng-select.ng-select-custom.ng-select .ng-value {
+    word-break: break-all;
+    -ms-word-break: break-all;
+    -webkit-hyphens: auto;
+    -moz-hyphens: auto;
+    -ms-hyphens: auto;
+    hyphens: auto;
+    overflow-wrap: break-word;
+    overflow: hidden;
+    white-space: normal !important;
+}
+
+
+/*nuevas readOnly*/
+
+.ng-select.read-only .ng-arrow-wrapper .ng-arrow {
+    display: none;
+}
+
+.ng-select.read-only ng-dropdown-panel {
+    display: none;
+}
+
+.ng-select.read-only .ng-clear-wrapper {
+    display: none;
+}
+
+.ng-select.read-only .ng-select-container {
+    background-color: #e9ecef;
+}
+
+.cell-span {
+    background-color: #00e5ff;
+}
+
+.ag-theme-balham .ag-row-even {
+    background-color: unset;
+}
+
+.ag-theme-balham .ag-row-odd {
+    background-color: unset;
+}
+
+.ng-select.select-floating-filter {
+    border: 0px;
+    min-height: 0px;
+    max-height: 20px;
+    border-radius: 0;
+    padding: 1px;
+}
+
+.ng-select.select-floating-filter .ng-select-container {
+    min-height: 0px;
+    max-height: 20px;
+    border-radius: 0;
+    padding: 0;
+}
+
+.ng-select.select-floating-filter .ng-value-container {
+    min-height: 0px;
+    border-radius: 0;
+    padding: 0;
+    margin: 1px;
+}
+
+.ng-select.select-floating-filter.ng-select-multiple .ng-select-container .ng-value-container {
+    padding: 0 !important;
+    overflow: hidden;
+}
+
+.ng-select.select-floating-filter .ng-select-container {
+    min-height: 0px;
+    max-height: 20px;
+    border-radius: 0;
+    padding: 0;
+}
+
+.select-floating-filter.ng-dropdown-panel {
+    width: auto !important;
+    max-width: 550px;
+}
+
+.select-floating-filter.ng-dropdown-panel .ng-dropdown-panel-items .ng-option {
+    padding: 2px;
+    font-size: small
+}
+
+.ng-select.select-floating-filter .ng-value {
+    padding: 2px;
+    margin: 0px;
+    font-size: small
+}
+
+
+/* .container {
+  margin-top: 20px;
+}
+.page {
+  display: none;
+}
+.page-active {
+  display: block;
+} */

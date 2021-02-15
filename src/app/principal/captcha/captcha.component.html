@@ -1,0 +1,7 @@
+<div class="input-group mb-4">
+<div class="input-group-prepend">
+        <img *ngIf="imageContent" width="100" height="35"  [src]="imageContent"> 
+        <button #btnRefresh (click)="refresh()"  style="height:35px;" type="button" class="btn btn-light"><i title="Refrescar" class="fa fa-refresh"></i></button>
+</div>
+    <input type="text" style="text-transform: uppercase;" [(ngModel)]="value"  class="form-control" placeholder="" maxlength="4" required>
+</div>

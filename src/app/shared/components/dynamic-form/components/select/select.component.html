@@ -1,0 +1,62 @@
+
+
+<ng-template #selectTemplate>
+    <ng-select #select 
+        class="ng-select-custom"
+        [ngClass]="estiloValidoInvalido"
+        [searchable]="config.searchable"
+        [placeholder]="config.placeholder"
+        [items]="data"
+        [bindLabel]="config.propertyLabel"
+        [bindValue]="config.propertyValue"
+        [multiple]="config.selectMultiple"
+        [addTag]="config.addTag"
+        [isOpen]="config.isOpen"
+        [hideSelected]="config.hideSelected"
+        loadingText="Cargando..."
+        [loading]="loading"
+        [clearable]="config.clearable"
+        (add)="onAdd($event)"
+        (remove)="onRemove($event)"
+        (change)="onChange($event)"
+        (blur)="onBlur()"
+        [closeOnSelect]="config.closeOnSelect"
+        [disabled]="disabled"
+        [(ngModel)]="value"
+        [typeahead]="typeahead"
+        >
+        <ng-template *ngIf="config.fnTemplate" ng-option-tmp let-item="item" let-search="searchTerm">
+            <div innerHTML="{{crearTemplate(item)}}"></div>
+        </ng-template>
+        <ng-template *ngIf="config.fnTemplateLabel" ng-label-tmp let-item="item">
+            <div innerHTML="{{crearTemplateLabel(item)}}"></div>
+        </ng-template>
+      </ng-select>
+</ng-template> 
+
+<ng-template #selectButtonTemplate>
+    <table style="width:100%; border-collapse: collapse; border-spacing: 0px; border: none; padding: 0;">
+            <tbody>
+            <tr style="border: none; padding: 0;">
+                <td style="border: none; padding: 0;">
+                    <ng-container *ngTemplateOutlet="selectTemplate"></ng-container>
+                </td>
+                <td *ngIf="config.showButton" style="width:30px">
+                <button type="button" (click)="onClickButton()" class="btn btn-outline-info"><i title="Editar" class="fa fa-plus" ></i></button>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+</ng-template>
+
+<ng-template #selectReadonlyTemplate>
+    <span class="form-control" style="background-color: #f9f9f9">{{valueLabel}}</span>
+</ng-template>
+
+
+
+<ng-container [ngSwitch]="getTypeTemplate()" >
+    <ng-container *ngSwitchCase="1" [ngTemplateOutlet]="selectReadonlyTemplate"></ng-container>
+    <ng-container *ngSwitchCase="2" [ngTemplateOutlet]="selectButtonTemplate" ></ng-container>
+    <ng-container *ngSwitchCase="3" [ngTemplateOutlet]="selectTemplate" ></ng-container>
+</ng-container>

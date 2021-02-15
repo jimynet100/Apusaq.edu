@@ -1,0 +1,121 @@
+<ng-template #fieldSinButtonTemplate let-control='control' let-i='i'>
+    <ng-container dynamicField [padre]="getReferencia()" [contenedorControl]="control"></ng-container>
+</ng-template>
+
+<ng-template #fieldButtonTemplate let-control='control' let-i='i' >
+    <table style="width:100%; border-collapse: collapse; border-spacing: 0px; border: none; padding: 0;">
+        <tbody>
+            <tr style="border: none; padding: 0;">
+                <td style="border: none; padding: 0;">
+                    <ng-container dynamicField [padre]="getReferencia()" [contenedorControl]="control"></ng-container>
+                </td>
+                <td *ngIf="control.showButton()" style="width:30px">
+                    <button type="button" title="{{control.getButttonTooltip()}}" (click)="control.onClickButton()" class="btn btn-outline-info"><i  class="{{control.getButttonIconClass()}}" ></i></button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</ng-template>
+
+
+
+
+<ng-template #fieldTemplate let-control='control' let-i='i'>
+    <div *ngIf="!control.isHidden()" [class]="control.getColumnClass()" [hidden]="!control.isVisible()">
+        <div class="form-group my-1" [formGroup]="control.getFormGroup()" [tooltip]="control.getErrorTooltip()" placement="top" containerClass="tooltip-error">
+            <label *ngIf="control.existeLabelIzquierda()">{{control.getLabel()}}</label>
+            <ng-container *ngIf="control.showButton()" [ngTemplateOutlet]="fieldButtonTemplate" [ngTemplateOutletContext]="{control:control,i:i}">
+            </ng-container>
+            <ng-container *ngIf="!control.showButton()" [ngTemplateOutlet]="fieldSinButtonTemplate" [ngTemplateOutletContext]="{control:control,i:i}">
+            </ng-container>
+            <div *ngIf="control.mostrarErrorLabel()" class="field-message-invalid">
+                {{control.getErrorMessage()}}
+            </div>
+        </div>
+    </div>
+    <!--Soporte para elementos hidden-->
+    <ng-container *ngIf="control.isHidden()" [ngTemplateOutlet]="fieldSinButtonTemplate" [ngTemplateOutletContext]="{control:control,i:i}">
+    </ng-container>
+</ng-template>
+
+<!-- Plantilla para pintar el arrayFieldConfig -->
+<ng-template #arrayFieldTemplate let-arrayControl='arrayControl' >
+    <div class="row">
+        <ng-container *ngFor="let control of arrayControl; let i =index;">
+            <ng-container [ngTemplateOutlet]="fieldTemplate" [ngTemplateOutletContext]="{control:control,i:i}"></ng-container>
+        </ng-container>
+    </div>
+</ng-template>
+
+<ng-template #arrayFieldTemplateSinRow let-arrayControl='arrayControl'>
+    <ng-container *ngFor="let control of arrayControl; let i =index;">
+        <ng-container [ngTemplateOutlet]="fieldTemplate" [ngTemplateOutletContext]="{control:control,i:i}"></ng-container>
+    </ng-container>
+</ng-template>
+
+
+<form *ngIf="mostrarFormulario()" [formGroup]="getForm()" (submit)="handleSubmit($event)">
+    <!-- cuando es array -->
+    <ng-container *ngIf="mostrarFormArray()">
+        <ul class="list-group">
+
+            <li class="list-group-item pt-2 pb-1" *ngIf="mostrarTitulo()">
+                <div class="float-left">
+                    <h6 class="m-0">{{getFormConfig().titulo}}</h6>
+                </div>
+                <div *ngIf="getFormConfig().mostrarAgregar" class="float-right">
+                    <button type="button" (click)="agregarFormGroupContenedor()" class="btn btn-outline-primary btn-sm">
+                                Agregar <span class="badge badge-primary">{{getRows()}}</span>
+                    </button>
+                </div>
+            </li>
+
+            <li class="list-group-item p-1" *ngIf="mostrarTituloColumnaSuperior()">
+                <div class="row p-0 m-0">
+                    <ng-container *ngFor="let fieldConfig of getArrayFieldConfig(); let j = index;">
+                        <div *ngIf="fieldConfig.type!='hidden'" class="col-md-{{fieldConfig.column}} text-center">
+                            <h6 class="m-0">{{fieldConfig.label}}</h6>
+                        </div>
+                    </ng-container>
+                </div>
+            </li>
+
+            <!-- cuando necesitamos una distribucion cada elemento del array en una fila -->
+            <ng-container *ngIf="!getFormConfig().mostrarArrayNoTabla">
+                <li class="list-group-item py-0 px-1" formArrayName="formArray" *ngFor="let itemFormGroup of getArrayItemFormGroup(); let j = index;">
+                    <table style="width:100%; border-collapse: collapse; border-spacing: 0px; border: none; padding: 0;">
+                        <tbody>
+                            <tr style="border: none; padding: 0;">
+                                <td style="border: none; padding: 0;">
+                                    <ng-container [formGroupName]="j" [formGroup]="itemFormGroup.formGroup">
+                                        <ng-container [ngTemplateOutlet]="arrayFieldTemplate" [ngTemplateOutletContext]="{arrayControl: itemFormGroup.arrayControl}">
+                                        </ng-container>
+                                    </ng-container>
+                                </td>
+                                <td *ngIf="getFormConfig().mostrarEliminar" style="width:30px">
+                                    <button type="button" (click)="eliminarFormGroupContenedor(j)" class="btn btn-outline-danger"><i class="fas fa-times" ></i></button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </li>
+            </ng-container>
+
+            <!-- cuando necesitamos una distribucion de los elementos del array consecutivos -->
+            <li *ngIf="getFormConfig().mostrarArrayNoTabla" class="list-group-item py-0 px-1">
+                <div class="row">
+                    <ng-container formArrayName="formArray" *ngFor="let itemFormGroup of getArrayItemFormGroup(); let j = index;">
+                        <ng-container [formGroupName]="j" [formGroup]="itemFormGroup.formGroup">
+                            <ng-container [ngTemplateOutlet]="arrayFieldTemplateSinRow" [ngTemplateOutletContext]="{arrayControl: itemFormGroup.arrayControl}">
+                            </ng-container>
+                        </ng-container>
+                    </ng-container>
+                </div>
+            </li>
+        </ul>
+        <div class="pt-1" style="width: 200px;"></div>
+    </ng-container>
+    <!-- cuando no es array -->
+    <ng-container *ngIf="!isArray" [ngTemplateOutlet]="arrayFieldTemplate" [ngTemplateOutletContext]="{arrayControl: getArrayControl()}">
+    </ng-container>
+</form>

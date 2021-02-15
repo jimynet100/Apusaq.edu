@@ -1,0 +1,27 @@
+<ag-grid-angular 
+    *ngIf="arrayColumnConfig" 
+    #agGrid 
+    [ngStyle]="config?.style" 
+    class="ag-theme-balham" 
+    [columnDefs]="arrayColumnConfig" 
+    [components]="configBase.components" 
+    [floatingFilter]="false" 
+    [rowSelection]="configBase.rowSelection" 
+    [rowDeselection]="true" 
+    [rowModelType]="configBase.rowModelType" 
+    [cacheOverflowSize]="configBase.cacheOverflowSize" 
+    [maxConcurrentDatasourceRequests]="configBase.maxConcurrentDatasourceRequests" 
+    [infiniteInitialRowCount]="configBase.infiniteInitialRowCount"
+    [maxBlocksInCache]="configBase.maxBlocksInCache" 
+    [pagination]="true" 
+    [paginationPageSize]="configBase.paginationPageSize" 
+    [cacheBlockSize]="configBase.cacheBlockSize" 
+    [getRowNodeId]="configBase.getRowNodeId" 
+    [defaultColDef]="configBase.defaultColDef"
+    (gridReady)="onGridReady($event)" 
+    (cellClicked)="onCellClicked($event)" 
+    [debug]="false" 
+    [suppressPropertyNamesCheck]="true" 
+    [overlayLoadingTemplate]="configBase.overlayLoadingTemplate" 
+    [overlayNoRowsTemplate]="configBase.overlayNoRowsTemplate">
+</ag-grid-angular>

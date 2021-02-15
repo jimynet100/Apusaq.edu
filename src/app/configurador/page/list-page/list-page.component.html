@@ -1,0 +1,10 @@
+
+<ng-container *ngIf="meta">
+    <div class="card card-primary card-outline">
+        <div *ngIf="meta && meta.title" class="card-header">
+            <i class="fa fa-align-justify"></i> {{ meta.title }}
+        </div>
+        <app-grid #grid [config]="gridConfig" [filtro]="filtro"></app-grid>
+    </div> 
+    
+</ng-container>

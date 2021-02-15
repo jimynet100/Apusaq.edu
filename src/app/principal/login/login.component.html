@@ -1,0 +1,338 @@
+<!-- <div class="app-body">
+    <main class="main d-flex align-items-center">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8 mx-auto">
+                    <div class="card-group">
+                        <div class="card p-4">
+                            <div class="card-body">
+                                <form [formGroup]="form">
+                                    <h1>Login</h1>
+                                    <p class="text-muted">Ingrese con su cuenta</p>
+                                    <div class="input-group mb-3">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text"><i class="icon-user"></i></span>
+                                        </div>
+                                        <input type="text" formControlName="userName" style="text-transform: uppercase;" id="inputEmail" class="form-control" placeholder="Usuario" autocomplete="username" maxlength="20" required>
+                                    </div>
+                                    <div class="input-group mb-3">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text"><i class="icon-user"></i></span>
+                                        </div>
+                                        <input type="password" formControlName="password" id="password" class="form-control" required>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-6">
+                                            <button type="button" [disabled]="!isValid()" (click)="login()" class="btn btn-primary px-4">Login</button>
+                                        </div>
+                                        <div class="col-6 text-right">
+                                            <button type="button" class="btn btn-link px-0">¿Olvido su password?</button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                        <div class="card text-white bg-primary py-5 d-md-down-none" style="width:44%">
+                            <div class="card-body text-center">
+                                <div>
+                                    <h2>Sign up</h2>
+                                    <p>Dynamo</p>
+                                    <button type="button" class="btn btn-primary active mt-3">Registrarse!</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="card text-white bg-primary py-5 d-md-down-none" style="width:44%">
+                            <div class="card-body text-center">
+                                <div>
+                                    <button type="button" (click)="loginPorPerfil('solicitante')" class="btn btn-primary active mt-3">Solicitante</button>
+                                    <button type="button" (click)="loginPorPerfil('lider')" class="btn btn-primary active mt-3">Lider</button>
+                                    <button type="button" (click)="loginPorPerfil('gestor')" class="btn btn-primary active mt-3">Gestor</button>
+                                    <button type="button" (click)="loginPorPerfil('analista')" class="btn btn-primary active mt-3">Analista</button>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+</div> -->
+
+
+
+<!-- NUEVO LOGIN -->
+
+<head>
+    <meta charset="UTF-8">
+    <title>Acceso | GESTOR QA</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+</head>
+
+<style>
+    .tituloS {
+        padding: 0;
+        background-color: #fff!important;
+        font-family: 'Open Sans', "Helvetica Neue", Helvetica, Arial, sans-serif;
+        text-align: center;
+        color: #000!important;
+        font-size: 18px;
+        text-transform: uppercase;
+        font-weight: 300
+    }
+    
+    .botonRadio {
+        border-radius: 60px!important;
+        position: relative;
+        color: #fff!important;
+        width: 32%!important;
+        margin-left: 34%;
+        text-align: center;
+        background-color: #337ab7!important;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis
+    }
+    
+    .news-caption {
+        background: rgba(0, 0, 0, .7);
+        color: #999;
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        padding: 30px 60px;
+        font-size: 14px;
+        z-index: 20;
+        font-weight: 300;
+        min-width: 680px;
+    }
+    
+    .caption-title {
+        color: #fff;
+        color: rgba(255, 255, 255, .8);
+        font-weight: 300;
+        font-size: 28px
+    }
+    
+    .text-success {
+        color: #00acac!important
+    }
+    
+    .contenedor-login {
+        margin-left: 24%;
+    }
+    
+    .contenedor-recordarme {
+        margin-left: 15%;
+    }
+    
+    .contenedor-olvidopass {
+        margin-left: 47%;
+        margin-top: 8px;
+        font-size: 13px;
+    }
+</style>
+
+
+<!-- NUEVO LOGIN 
+
+
+<div class="app-body">
+    <main class="main d-flex align-items-center">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8 mx-auto">
+                    <div class="card-group">
+                        <div class="card p-4">
+                            <div class="card-body">
+                                <form [formGroup]="form">
+                                    <h1>Login</h1>
+                                    <p class="text-muted">Ingrese con su cuenta</p>
+                                    <div class="input-group mb-3">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text"><i class="icon-user"></i></span>
+                                        </div>
+                                        <input type="text" formControlName="userName" style="text-transform: uppercase;" id="inputEmail" class="form-control" placeholder="Usuario" autocomplete="username" maxlength="20" required>
+                                    </div>
+                                    <div class="input-group mb-3">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text"><i class="icon-user"></i></span>
+                                        </div>
+                                        <input type="password" formControlName="password" id="password" class="form-control" required>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-6">
+                                            <button type="button" [disabled]="!isValid()" (click)="login()" class="btn btn-primary px-4">Login</button>
+                                        </div>
+                                        <div class="col-6 text-right">
+                                            <button type="button" class="btn btn-link px-0">¿Olvido su password?</button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                        <div class="card text-white bg-primary py-5 d-md-down-none" style="width:44%">
+                            <div class="card-body text-center">
+                                <div>
+                                    <h2>Sign up</h2>
+                                    <p>Dynamo</p>
+                                    <button type="button" class="btn btn-primary active mt-3">Registrarse!</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="card text-white bg-primary py-5 d-md-down-none" style="width:44%">
+                            <div class="card-body text-center">
+                                <div>
+                                    <button type="button" (click)="loginPorPerfil('solicitante')" class="btn btn-primary active mt-3">Solicitante</button>
+                                    <button type="button" (click)="loginPorPerfil('lider')" class="btn btn-primary active mt-3">Lider</button>
+                                    <button type="button" (click)="loginPorPerfil('gestor')" class="btn btn-primary active mt-3">Gestor</button>
+                                    <button type="button" (click)="loginPorPerfil('analista')" class="btn btn-primary active mt-3">Analista</button>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="news-caption">
+            <h4 class="caption-title"><i class="fa fa-comment-o text-success"></i> Bienvenido a Apusaq</h4>
+            <p>Plataforma educativa versatil, orientada al registro y control de ciclos académicos.</p>
+        </div>
+
+    </main>
+</div>
+
+-->
+
+<div class="app-body">
+
+    <div class="col-lg-12 col-md-12" style="padding-left: 0px;padding-right: 0px;background: white;">
+        <div class="row">
+            <div class="hidden-sm hidden-xs col-lg-8 col-md-8" style="padding-left: 0px;padding-right: 0px;">
+                <div class="grid-block" style="background-image:url(assets/img/baseapusaq.jpeg);width:100%;height:100vh">
+                    <div class="news-caption">
+            <h4 class="caption-title"><i class="fa fa-comment-o text-success"></i> Bienvenido a Dynamo</h4>
+            <p>Plataforma educativa versatil, orientada al registro y control de ciclos académicos.</p>
+        </div>
+                </div>
+            </div>
+            <div class="col-sm-12 col-xs-12 col-lg-4 col-md-4" style="padding-left: 0px;padding-right: 0px;">
+                <div class="container" style="padding: 0px;width: 100%;">
+                    <form class="form-login formulario" form [formGroup]="form" style="max-width: 372px;margin: 0px;max-width: 100%;background: white!important;">
+                        <div class="col-lg-12 col-md-12">
+                            <div class="col-lg-12 col-md-12" style="text-align: center;padding-top: 60px;padding-bottom: 20px">
+                                <img src="assets/img/logo.jpg" width="250" data-pagespeed-url-hash="334373095">
+                            </div>
+                            <div class="col-lg-12 col-md-12" style="padding: 15px;">
+                                <h2 class="tituloS"><i class="fa fa-bar-chart" aria-hidden="true"></i>ACCESO A LA INTRAWEB</h2>
+                                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12"><span class="respuesta"></span></div>
+
+                                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" class="contenedor-login">
+                                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                                        <div class="row">
+
+
+                                            <div class="form-group">
+                                                <div class="input-group">
+                                                    <div class="input-group-prepend">
+                                                        <span class="input-group-text"><i class="fa fa-user"></i></span>
+                                                    </div>
+                                                    <input type="text" formControlName="userName" id="username" class="form-control" placeholder="Usuario">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" class="contenedor-login">
+                                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                                        <div class="row">
+
+
+                                            <div class="form-group">
+                                                <div class="input-group">
+                                                    <div class="input-group-prepend">
+                                                        <span class="input-group-text"><i class="fas fa-key"></i></span>
+                                                    </div>
+                                                    <input type="password" formControlName="password" id="password" class="form-control" placeholder="Contraseña" autocomplete="current-password">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                                        <div class="row"></div>
+                                    </div>
+                                </div>
+
+                                <div class="row col-xs-12 col-sm-12 col-md-12 col-lg-12 contenedor-recordarme">
+                                    <div class="form-check">
+                                        <label class="switch switch-label switch-outline-primary-alt">
+                                          <input type="checkbox" class="switch-input" checked>
+                                          <span class="switch-slider" data-checked="&#x2713;" data-unchecked="&#x2715;"></span>
+                                          
+                                        </label>
+                                    </div>
+                                    <div>
+                                        <label class="form-check-label" for="materialChecked2">Recordarme</label>
+                                    </div>
+
+                                </div>
+
+
+                                <div class="social-auth-links text-center">
+                                    <button type="button" [disabled]="!isValid()" (click)="login()" class="btn btn-info px-4">Login</button>
+                                </div>
+                                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 contenedor-olvidopass">
+                                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                                        <div class="row">
+                                            <p class="text-right"><a href="http://indra.gestorqa.com/sistema/recuperarClave/panel"> ¿Olvido su contraseña?</a></p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-12 col-md-12" style="padding-bottom: 20px;">
+                                <footer class="main-footer" style="text-align: center;margin: 0px;">© Copyright 2020 - APUSAQ - Todos los derechos reservados</footer>
+                            </div>
+                            <div class="col-lg-12 col-md-12" style="padding-bottom: 20px;">
+                                <div class="row">
+                                    <div class="col-lg-3 col-md-3">
+                                        <p class="text-right">
+                                            <a (click)="loginPorPerfil('solicitante')"><span style="cursor: pointer;" class="badge badge-secondary">Solicitante</span> </a>
+                                        </p>
+                                    </div>
+                                    <div class="col-lg-3 col-md-3">
+                                        <p class="text-right">
+                                            <a (click)="loginPorPerfil('lider')"> <span style="cursor: pointer;" class="badge badge-secondary">Líder</span></a>
+                                        </p>
+                                    </div>
+                                    <div class="col-lg-3 col-md-3">
+                                        <p class="text-right">
+                                            <a (click)="loginPorPerfil('gestor')"> <span style="cursor: pointer;" class="badge badge-secondary">Gestor</span></a>
+                                        </p>
+                                    </div>
+                                    <div class="col-lg-3 col-md-3">
+                                        <p class="text-right">
+                                            <a (click)="loginPorPerfil('analista')"> <span style="cursor: pointer;" class="badge badge-secondary">Analista</span></a>
+                                        </p>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</div>
+

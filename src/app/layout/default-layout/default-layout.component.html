@@ -1,0 +1,98 @@
+<app-header [fixed]="true" 
+    [navbarBrandFull]="{src: 'assets/img/brand/logo.png', width: 90, height: 25, alt: 'Dynamo Logo'}" 
+    [navbarBrandMinimized]="{src: 'assets/img/brand/sygnet.svg', width: 30, height: 30, alt: 'Dynamo Logo'}" 
+    [sidebarToggler]="'lg'"
+    [asideMenuToggler]="false"
+    >
+    <ul class="nav navbar-nav ml-auto">
+        <li class="nav-item dropdown">
+        <a class="nav-link nav-link" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+            <img class="img-avatar" src="assets/img/user-160.png" alt="admin@bootstrapmaster.com">
+        </a>
+        <div class="dropdown-menu dropdown-menu-right">
+            <div class="dropdown-header text-center">
+                <strong>Cuenta</strong>
+            </div>
+            <div class="dropdown-item" >
+                <i class="fa fa-address-book"></i> {{getDniUser()}}
+                <!-- 
+                <span class="badge badge-info">42</span>
+                -->
+            </div>
+            <div class="dropdown-item">
+                <i class="fa fa-address-book"></i> {{getNombreUser()}}
+                <!-- 
+                <span class="badge badge-success">42</span>
+                -->
+            </div>
+            <div class="dropdown-item">
+                <i class="fa fa-hourglass"></i> {{getUltimoLogin()}}
+                <!-- 
+                <span class="badge badge-success">42</span>
+                -->
+            </div>
+            <!-- 
+            <a class="dropdown-item" href="#">
+                <i class="fa fa-tasks"></i> Tasks
+                <span class="badge badge-danger">42</span>
+            </a>
+            <a class="dropdown-item" href="#">
+                <i class="fa fa-comments"></i> Comments
+                <span class="badge badge-warning">42</span>
+            </a>
+            -->
+            <div class="dropdown-header text-center">
+                <strong>Configuracion</strong>
+            </div>
+            <!-- 
+            <a class="dropdown-item" href="#">
+                <i class="fa fa-user"></i> Profile</a>
+            <a class="dropdown-item" href="#">
+                <i class="fa fa-wrench"></i> Settings</a>
+            <a class="dropdown-item" href="#">
+                <i class="fa fa-usd"></i> Payments
+                <span class="badge badge-dark">42</span>
+            </a>
+            <a class="dropdown-item" href="#">
+                <i class="fa fa-file"></i> Projects
+                <span class="badge badge-primary">42</span>
+            </a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" href="#">
+                <i class="fa fa-shield"></i> Lock Account</a>
+            -->
+            <div class="dropdown-item" href="" (click)="refresh()"  >
+                <i class="fa fa-shield"  ></i> Refresh
+            </div>
+            <div class="dropdown-item" href="" (click)="logout()"  >
+                <i class="fa fa-lock"  ></i> Logout
+            </div>
+        </div>
+        </li>
+    </ul>
+
+</app-header>
+
+
+
+<div class="app-body">
+    <app-sidebar [fixed]="true" [display]="'lg'">
+        <app-sidebar-nav [navItems]="navItems" [perfectScrollbar] [disabled]="sidebarMinimized"></app-sidebar-nav>
+    </app-sidebar>
+    <!-- Main content -->
+    <main class="main">
+        <!-- Breadcrumb -->
+        <!-- <ol class="breadcrumb" style="margin-bottom: 10px;">
+            <app-breadcrumb></app-breadcrumb>
+        </ol> -->
+        <div class="container-fluid" id="principalContainer" style="padding: 0 10px" >
+            <router-outlet></router-outlet>
+        </div>
+        <!-- /.container-fluid -->
+    </main>
+</div>
+
+<app-footer id="divFooter"  >
+    <span><a href="https://www.apusaq.com">Apusaq</a> &copy; 2020</span>
+    <span class="ml-auto">Dynamo - Build {{getVersion()}}</span>
+</app-footer>

@@ -1,0 +1,36 @@
+
+<div class="row">
+  <ng-container *ngIf="getStyleType()==1">
+    <ng-container *ngFor="let item of listOption; let i =index;">
+        <div [ngClass]="getColumnStyle()">
+            <input class="form-check-input" (click)="clickOption(item)" [checked]="item.checked" type="radio"  >
+            <label class="form-check-label">
+              {{item.label}}
+            </label>
+        </div>  
+    </ng-container>
+  </ng-container>
+  <ng-container *ngIf="getStyleType()==2">
+      <ng-container *ngFor="let item of listOption; let i =index;"> 
+          <div [ngClass]="getColumnStyle()"  >
+              <div class="input-group">
+                  <div class="input-group-prepend">
+                    <div class="input-group-text" [ngStyle]="{'background-color':getBackgroundColorCheked(item)}">
+                        <input (click)="clickOption(item)" [checked]="item.checked" type="radio"  >
+                    </div>
+                  </div>
+                  <span class="form-control">{{item.label}}</span>
+                </div>
+          </div>  
+      </ng-container>
+    </ng-container>
+    <div *ngIf="getStyleType()==3" class="btn-group" role="group">
+        <ng-container *ngFor="let item of listOption; let i =index;">
+          <button type="button" class="btn btn-outline-dark" [ngClass]="{'active': item.checked}" (click)="clickOption(item)" >{{item.label}}</button>
+        </ng-container>
+    </div>
+</div>
+
+
+
+

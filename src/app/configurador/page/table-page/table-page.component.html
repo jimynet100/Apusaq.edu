@@ -1,0 +1,19 @@
+<ng-container *ngIf="meta">
+    <div *ngIf="meta.title" class="card">
+        <div class="card-body" style="padding: 10px;">
+            
+            <h5 ><i class="far fa-chart-bar"></i> {{ meta.title }}</h5>
+            <!--  
+            <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
+            -->
+        </div>
+    </div>
+
+    <ng-container *ngIf="tableConfig">
+        <app-table #table [config]="tableConfig" [filtro]="filtro"></app-table>
+    </ng-container>
+    <ng-container *ngFor="let config of arrayTableConfig; let i = index;">
+        <app-table #tables [config]="config" [filtro]="filtros[i]"></app-table>
+    </ng-container>
+
+</ng-container>

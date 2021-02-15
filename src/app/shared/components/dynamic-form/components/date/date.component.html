@@ -1,0 +1,19 @@
+
+<ng-template #inputTemplateReadOnly>
+    <span class="form-control" style="background-color: #f9f9f9">{{valueUser}}</span>
+</ng-template>
+
+<div *ngIf="bsConfig && !readonly; else inputTemplateReadOnly" class="input-group">
+    <input type="text" class="form-control" 
+        [textMask]="config.mask" 
+        [ngModel]="valueUser" 
+        (ngModelChange)="onValueUserChange($event)"
+        [ngClass]="ngClass"
+    >
+    <div bsDatepicker #dp="bsDatepicker" [bsConfig]="bsConfig"  (bsValueChange)="onDatePickerChange($event)"  ></div>
+    <div *ngIf="!isDisabled&&!readonly" class="input-group-append"> 
+        <button class="btn btn-outline-secondary" (click)="onClick()" [attr.aria-expanded]="dp.isOpen" type="button">
+        <i class="fa fa-calendar" style="width: 1.2rem; height: 1rem; cursor: pointer;"></i>
+        </button>
+    </div>
+</div>

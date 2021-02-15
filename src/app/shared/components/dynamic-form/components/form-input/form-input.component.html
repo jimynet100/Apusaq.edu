@@ -1,0 +1,89 @@
+<ng-template #inputTemplate>
+  <ng-container [formGroup]="group">
+    <input
+      type="text"
+      class="form-control"
+      [ngClass]="{'is-invalid': invalid, 'is-valid': valid}"
+      [placeholder]="config.placeholder"
+      [formControlName]="config.name"
+      [readonly]="contenedorControl?.isReadOnly()"
+      [maxlength]="config.maxlength"
+      tooltip="{{fnTooltip()}}"
+      >
+  </ng-container>
+</ng-template> 
+
+<ng-template #inputTemplateUpper>
+    <ng-container [formGroup]="group">
+      <input
+        type="text"
+        class="form-control"
+        [ngClass]="{'is-invalid': invalid, 'is-valid': valid}"
+        [placeholder]="config.placeholder"
+        [formControlName]="config.name"
+        upperCase
+        [readonly]="contenedorControl?.isReadOnly()"
+        [maxlength]="config.maxlength"
+        tooltip="{{fnTooltip()}}"
+        >
+    </ng-container>
+</ng-template> 
+
+<ng-template #inputTemplateMask>
+  <ng-container [formGroup]="group">
+    <input
+      type="text"
+      class="form-control"
+      [ngClass]="{'is-invalid': invalid, 'is-valid': valid}"
+      [placeholder]="config.placeholder"
+      [formControlName]="config.name"
+      [textMask]="config.mask"
+      [readonly]="contenedorControl?.isReadOnly()"
+      [maxlength]="config.maxlength"
+      tooltip="{{fnTooltip()}}"
+      >
+  </ng-container>
+</ng-template> 
+
+<ng-template #inputTemplateMaskUpper>
+    <ng-container [formGroup]="group">
+      <input
+        type="text"
+        class="form-control"
+        [ngClass]="{'is-invalid': invalid, 'is-valid': valid}"
+        [placeholder]="config.placeholder"
+        [formControlName]="config.name"
+        [textMask]="config.mask"
+        upperCase
+        [readonly]="contenedorControl?.isReadOnly()"
+        [maxlength]="config.maxlength"
+        tooltip="{{fnTooltip()}}"
+        >
+    </ng-container>
+</ng-template>  
+ 
+<ng-template #inputTemplateReadOnly>
+  <ng-container [formGroup]="group">
+    <app-texto [formControlName]="config.name"></app-texto>
+  </ng-container>
+</ng-template>   
+      
+<ng-template #inputIconTemplateMask >
+    <div class="input-group">
+      <div *ngIf="config?.mask?.icon || config?.mask?.iconText" class="input-group-prepend">
+        <span *ngIf="config.mask.icon" class="input-group-text"><i class="{{config.mask.icon}}"></i></span> 
+        <span *ngIf="config.mask.iconText" class="input-group-text">{{config.mask.iconText}}</span>
+      </div>
+      <ng-container *ngIf="config.case==1; else inputTemplateMaskUpper" [ngTemplateOutlet]="inputTemplateMask"></ng-container>
+    </div>
+</ng-template>
+
+
+<ng-container [ngSwitch]="getTypeTemplate()" >
+  <ng-container *ngSwitchCase="1" [ngTemplateOutlet]="inputTemplate" ></ng-container>
+  <ng-container *ngSwitchCase="2" [ngTemplateOutlet]="inputTemplateUpper" ></ng-container>
+  <ng-container *ngSwitchCase="3" [ngTemplateOutlet]="inputTemplateMask" ></ng-container>
+  <ng-container *ngSwitchCase="4" [ngTemplateOutlet]="inputTemplateMaskUpper" ></ng-container>
+  <ng-container *ngSwitchCase="5" [ngTemplateOutlet]="inputIconTemplateMask" ></ng-container>
+  <ng-container *ngSwitchCase="6" [ngTemplateOutlet]="inputTemplateReadOnly" ></ng-container>
+</ng-container>

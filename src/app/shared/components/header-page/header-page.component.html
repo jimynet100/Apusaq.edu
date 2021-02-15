@@ -1,0 +1,28 @@
+<div *ngIf="config" class="card" style="margin-bottom: 5px;">
+    <div class="card-header" style="padding: 10px;">
+         <i class="{{config.iconClass}} fa-lg"></i> <b style="font-size: medium;">{{config.title}}</b>
+        <div class="card-header-actions">
+            <div class="btn-group">
+                <ng-container *ngFor="let buttonConfig of arrayButtonConfig; let i = index;" >
+                    <button 
+                        type="button" 
+                        [disabled]="buttonConfig.fnIsDisabled && buttonConfig.fnIsDisabled()" 
+                        (click)="click(buttonConfig, $event)" 
+                        tooltip="{{buttonConfig.tooltip}}" 
+                        class="btn btn-sm btn-outline-dark">
+                        <b>{{buttonConfig.titulo}} </b> <i class="{{buttonConfig.iconClass}} fa-2x" ></i>
+                    </button>
+                </ng-container>
+                <!-- 
+                <button type="button  btn-sm" class="btn btn-outline-dark">Left</button>
+                <button type="button  btn-sm" class="btn btn-outline-dark">Middle</button>
+                <button type="button  btn-sm" class="btn btn-outline-dark"><i class="fa fa-file" ></i></button>
+                 -->
+            </div>
+        </div>
+    </div>
+</div> 
+
+
+
+

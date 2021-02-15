@@ -1,0 +1,36 @@
+<div class="form-row text-center btn-toolbar" *ngIf="config && arrayButtonConfig">
+  <div class="col-12" >
+      <ng-container *ngFor="let buttonConfig of arrayButtonConfig; let i = index;" >
+
+          <button *ngIf="(buttonConfig.type == 1 || buttonConfig.type == 3) && mostrar(buttonConfig)"           
+            [disabled]="buttonConfig.fnIsDisabled && buttonConfig.fnIsDisabled()" 
+            (click)="click(buttonConfig, $event)" 
+            type="button"
+            tooltip="{{buttonConfig.tooltip}}" 
+            class="btn btn-outline-primary btn-sm">
+            {{buttonConfig.titulo}} <i class="{{buttonConfig.iconClass}}" ></i> 
+          </button>
+
+          <span *ngIf="(buttonConfig.type == 2 ) && mostrar(buttonConfig)"           
+            class="btn btn-outline-primary btn-sm btn-file"
+            tooltip="{{buttonConfig.tooltip}}" >
+            {{buttonConfig.titulo}} <i  class="{{buttonConfig.iconClass}}" ></i> 
+            <input  type="file" 
+                    [disabled]="buttonConfig.fnIsDisabled && buttonConfig.fnIsDisabled()" 
+                    accept='text/plain' (change)='click(buttonConfig, $event)' >
+          </span>
+          
+          <span *ngIf="(buttonConfig.type == 4) && mostrar(buttonConfig)"           
+            class="btn btn-outline-primary btn-sm btn-file"
+            tooltip="{{buttonConfig.tooltip}}" >
+            {{buttonConfig.titulo}} <i  class="{{buttonConfig.iconClass}}" ></i> 
+            <input  type="file" 
+                    multiple
+                    name="uploadFile"
+                    [disabled]="buttonConfig.fnIsDisabled && buttonConfig.fnIsDisabled()" 
+                    (change)='click(buttonConfig, $event)' >
+          </span>
+
+      </ng-container>
+  </div>
+</div>

@@ -1,0 +1,7 @@
+<app-header-page [config]="headerPageConfig" ></app-header-page> 
+<template #container></template>
+<ng-container *ngIf="errorPageConfig">
+    <app-error-page [config]="errorPageConfig"></app-error-page>
+</ng-container>
+
+

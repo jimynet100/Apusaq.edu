@@ -1,0 +1,13 @@
+.ng-select.custom2 {
+    border:0px;
+    min-height: 0px;
+    max-height: 20px;
+    border-radius: 0;
+    padding: 0;
+  }
+  .ng-select.custom2 .ng-select-container  {            
+    min-height: 0px;
+    max-height: 20px;
+    border-radius: 0;
+    padding: 0;
+  }

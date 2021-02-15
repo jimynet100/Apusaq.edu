@@ -1,0 +1,40 @@
+<ng-template #inputTemplate>
+  <ng-container [formGroup]="group">
+      <textarea rows="4" cols="50"
+        class="form-control"
+        [ngClass]="{'is-invalid': invalid, 'is-valid': valid}"
+        [placeholder]="config.placeholder"
+        [formControlName]="config.name"
+        [readonly]="config.readOnly"
+        [maxlength]="config.maxlength"
+      >
+      </textarea>
+  </ng-container>
+</ng-template> 
+
+<ng-template #inputUpperTemplate>
+    <ng-container [formGroup]="group">
+      <textarea rows="4" cols="50"
+        class="form-control"
+        [ngClass]="{'is-invalid': invalid, 'is-valid': valid}"
+        [placeholder]="config.placeholder"
+        [formControlName]="config.name"
+        [readonly]="config.readOnly"
+        [maxlength]="config.maxlength"
+        upperCase
+      >
+      </textarea>
+    </ng-container>
+</ng-template> 
+
+<ng-template #inputTemplateReadOnly>
+  <ng-container [formGroup]="group">
+    <app-texto [formControlName]="config.name"></app-texto>
+  </ng-container>
+</ng-template>   
+
+<ng-container [ngSwitch]="getTypeTemplate()" >
+    <ng-container *ngSwitchCase="1" [ngTemplateOutlet]="inputTemplate" ></ng-container>
+    <ng-container *ngSwitchCase="2" [ngTemplateOutlet]="inputUpperTemplate" ></ng-container>
+    <ng-container *ngSwitchCase="3" [ngTemplateOutlet]="inputTemplateReadOnly" ></ng-container>
+</ng-container>

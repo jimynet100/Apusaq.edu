@@ -1,0 +1,85 @@
+
+
+<ul class="list-group">
+    <li class="list-group-item" *ngIf="config?.titulo">
+        <div class="float-left">
+            <h6 class="m-0">{{config?.titulo}}</h6>
+        </div>
+    </li>
+
+    <li class="list-group-item p-0">
+        
+
+        <ag-grid-angular 
+        *ngIf="arrayColumnConfig" 
+        #agGrid 
+        [contextMenu]="menu"
+        [ngStyle]="config?.style" 
+        class="ag-theme-balham"  
+        [columnDefs]="arrayColumnConfig" 
+        [components]="configBase.components" 
+        [rowSelection]="configBase.rowSelection" 
+        [rowDeselection]="true" 
+        rowModelType="clientSide" 
+        [maxConcurrentDatasourceRequests]="configBase.maxConcurrentDatasourceRequests" 
+        [getRowNodeId]="configBase.getRowNodeId" 
+        [defaultColDef]="configBase.defaultColDef"
+        (gridReady)="onGridReady($event)" 
+        (firstDataRendered)="firstDataRendered($event)" 
+        (cellClicked)="onCellClicked($event)"
+        (cellContextMenu)="onCellContextMenu($event)"
+        (cellDoubleClicked)="onCellDoubleClicked($event)"
+        (cellValueChanged)="onCellValueChanged($event)" 
+        [debug]="false" 
+        [rowData]="rowData" 
+        [getRowHeight]="config?.getRowHeight" 
+        [rowDragManaged]="config?.rowDragManaged" 
+        (rowDragEnd)="onRowDragEnd($event)"
+        [frameworkComponents]="config?.frameworkComponents" 
+        [suppressPropertyNamesCheck]="true"  
+        [overlayLoadingTemplate]="configBase.overlayLoadingTemplate"
+        [suppressRowTransform]="true"
+        [overlayNoRowsTemplate]="configBase.overlayNoRowsTemplate"
+        [floatingFilter]="config?.floatingFilter" 
+        [isExternalFilterPresent]="true"
+        [getContextMenuItems]="config?.getContextMenuItems"
+        [allowContextMenuWithControlKey]="true"
+        [suppressContextMenu]="true"
+        [icons]="config?.icons"
+        >
+    </ag-grid-angular>
+    </li>
+</ul>
+
+
+<div class="form-row text-center" *ngIf="config?.mostrarGuardar">
+    <div class="col-12">
+        <button *ngIf="existenCambios" type="button" (click)="guardar()" class="btn btn-outline-primary btn-sm">Guardar <i title="Nuevo" class="fa fa-save" ></i></button>
+    </div>
+</div>
+
+<context-menu #menu  (close)="closeContextMenu($event)" (open)="openContextMenu($event)">
+    <ng-template *ngFor="let optionAction of config?.optionsActionContext" contextMenuItem let-item
+        [visible]="!optionAction.fnIsVisible || optionAction.fnIsVisible(optionAction)" 
+        [enabled]="!optionAction.fnIsEnable || optionAction.fnIsEnable(optionAction)" 
+        [divider]="optionAction.divider" 
+        (execute)="clickItemContextMenu(optionAction,$event)">
+        {{optionAction.fnLabel(item)}}
+    </ng-template>
+</context-menu>
+
+
+
+<!--
+(cellMouseDown)="onCellMouseDown($event)" 
+
+    <ng-template contextMenuItem [visible]="true" [enabled]="true" (execute)="clickItemContextMenu($event)">
+        Copiar [Columna] a todos
+    </ng-template>
+    <ng-template contextMenuItem [visible]="true" [enabled]="true" (execute)="clickItemContextMenu($event)">
+        Borrar [Columna]
+    </ng-template>
+    <ng-template contextMenuItem [divider]="true"></ng-template>
+
+
+-->
